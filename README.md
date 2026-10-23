@@ -9,7 +9,9 @@
 ## 打开与运行
 
 - Unity：**2022.3.62f3c1**；安装 Windows Build Support、WebGL Build Support。
-- Unity Hub 添加本目录，打开 `Assets/NailAtelier/Scenes/NailAtelier.unity`，按 Play。
+- Unity Hub 添加本目录，打开 `Assets/NailAtelier/Scenes/NailAtelier.unity`。停止播放时，Scene（场景）视图也能查看和编辑 `AtelierModels` 模型；运行时复用同一实例。
+- 找不到模型时，使用菜单 **指间诗 → 显示并定位工作室模型**，或选中层级中的 `AtelierModels`，鼠标放在 Scene 视图按 **F**。菜单会切换到带预览照明的三维视角。
+- 按 **▶ Play**，切到 **Game（游戏）** 查看完整界面和美甲交互。相机、灯光和交互 UI 仍在播放后创建；播放中的修改不会保存回编辑场景。
 - 若修改了 Blender 导出的网格数据，菜单 **指间诗 → 生成 Blender 模型与可玩场景**。此操作会新建迁移场景，请先保存自己正在编辑的场景。
 - 本机独立版：`E:/Meijia/Builds/Windows/NailAtelier.exe`，须保留旁边的 Data、MonoBleedingEdge 与 DLL。
 - WebGL 需要 HTTP 服务，不能直接双击 index.html。

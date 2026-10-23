@@ -1,4 +1,6 @@
 Unity native migration QA
+PASS runtime reuses editable scene models
+PASS one studio model instance during play
 PASS lin finger 0 finite editable mesh
 PASS lin finger 1 finite editable mesh
 PASS lin finger 2 finite editable mesh
@@ -369,5 +371,5 @@ PASS invalid purchase backup rejected
 PASS full backup roundtrip
 PASS shop material usable in free creator
 PASS UV free drawing
-measured render loop 59.6 fps (this machine / QA scene)
+measured render loop 60.0 fps (this machine / QA scene)
 ERRORS 0

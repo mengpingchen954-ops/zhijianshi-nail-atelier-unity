@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 
 namespace NailAtelier {
 public class AtelierApp:MonoBehaviour {
+ [Tooltip("场景中可直接编辑的工作室模型；旧场景未设置时自动从资源加载。")] public GameObject sceneModels;
  public Catalog catalog;public SaveData data;public AtelierView view;public AtelierStore store;public Canvas canvas;public string screen="home";public bool freeMode;public int active=2;public string currentModal;public readonly Dictionary<string,Button> buttons=new Dictionary<string,Button>();
  public Customer Who=>data.session==null?null:catalog.Find(data.session.client);public Design Design=>freeMode?data.free:data.session?.plan;public string Step=>data.session==null?null:Rules.Steps(Who,data.session.plan)[data.session.step];
  Font font;RectTransform root,header,sidebar,fingers,stageLabel,planBoard,overlay,modalCard,modalBody;Text toastText,walletText;GameObject toastObject;Vector2 sideScroll;float toastUntil;bool savePending;float saveAt;int oldW,oldH;bool rebuilding,contactDown;Vector2 previousUV;float lastContact;Deco selected;string sticker,drawTool="select",brushColor="#9a6174";float brushSize=.06f;Stroke stroke;readonly Stack<string> undo=new Stack<string>(),redo=new Stack<string>();AudioSource music,sfx,contact;readonly Dictionary<string,AudioClip> audioClips=new Dictionary<string,AudioClip>();float lampRemaining;int lampHand=-1;string lampStep;string filePath="";bool booted;List<Texture2D> transient=new List<Texture2D>();
@@ -16,7 +17,7 @@ public class AtelierApp:MonoBehaviour {
  public void Start(){
   catalog=JsonUtility.FromJson<Catalog>(Resources.Load<TextAsset>("NailAtelier/Catalog").text);foreach(var c in catalog.customers){Rules.ValidateDesign(c.reference);Rules.ValidateDesign(c.blank);}
   bool visual=Environment.GetCommandLineArgs().Contains("-atelierVisualQa");bool qa=visual||Environment.GetCommandLineArgs().Contains("-atelierQa");store=new AtelierStore(catalog,qa?Path.Combine(Application.temporaryCachePath,"atelier-qa-save.json"):null);if(qa&&File.Exists(store.PathName))File.Delete(store.PathName);data=store.Load();font=Resources.Load<Font>("NailAtelier/Chinese");
-  view=gameObject.AddComponent<AtelierView>();view.Init();view.onHit=Hit;view.onRelease=ReleaseContact;
+  view=gameObject.AddComponent<AtelierView>();view.Init(sceneModels);view.onHit=Hit;view.onRelease=ReleaseContact;
   SetupUI();music=gameObject.AddComponent<AudioSource>();music.loop=false;music.volume=data.volume;contact=gameObject.AddComponent<AudioSource>();contact.loop=true;contact.volume=.16f;sfx=gameObject.AddComponent<AudioSource>();sfx.volume=.45f;
   StartCoroutine(LoadSounds());ApplyStudio();screen="home";Refresh();booted=true;if(store.error!=null)Toast(store.error,10);if(visual)StartCoroutine(AtelierQA.Visual(this));else if(qa)StartCoroutine(AtelierQA.Run(this));
  }
