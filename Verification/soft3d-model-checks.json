@@ -1,0 +1,21 @@
+{
+  "Hand_0": {
+    "outward_faces": 50908,
+    "inverted_faces": 0
+  },
+  "Hand_1": {
+    "outward_faces": 50908,
+    "inverted_faces": 0
+  },
+  "WorkMat": {
+    "outward_faces": 532,
+    "inverted_faces": 0
+  },
+  "Nail_02": {
+    "outward_faces": 1152,
+    "inverted_faces": 0
+  },
+  "mesh_objects": 137,
+  "nail_anchors": 10,
+  "prefab_references_resolved": 274
+}

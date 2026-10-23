@@ -2,6 +2,10 @@
 
 原生 C# / uGUI / Built-in Render Pipeline 美甲游戏。由网页版本 https://mengpingchen954-ops.github.io/zhijianshi-nail-atelier/ 的源码与数据迁移，场景和手部模型使用 Blender 建立。没有嵌入网页或浏览器控件。
 
+在线试玩：https://mengpingchen954-ops.github.io/zhijianshi-nail-atelier-unity/
+
+本轮已重新制作奶油粉、动画电影式 3D 场景：柔和桃色手部、圆弧甲床、罗纹袖口、花朵甲油瓶、爱心陶瓷盘与雏菊花器，并为甲油增加窗格环境反射。美术说明见 [SourceArt/ART-DIRECTION.md](SourceArt/ART-DIRECTION.md)。
+
 ## 打开与运行
 
 - Unity：**2022.3.62f3c1**；安装 Windows Build Support、WebGL Build Support。
@@ -60,3 +64,11 @@ $env:ATELIER_BUILD_ROOT = 'E:/Meijia/Builds'
 Windows 原生版本通过完整纯色课与贴片服务的共享 UV 交互路径、六轮分手固化及中断恢复、金币重复领取、六件商品幂等购买、存档重载、备份往返、画笔与课程门槛等检查。报告和实际画面见 `Verification/`；本机 RTX 3060 验证场景约 59.8 FPS，不能代表手机表现。
 
 `web/` 为本机 Unity Editor 导出的 WebGL 产物，GitHub Actions 将这个产物发布到 Pages。Actions 不负责无许可证的云端 Unity 编译；更新源代码后应按前述命令在已激活的本机 Unity 重建并替换 web/，再提交发布。
+
+## v1.1 · 重新建模验收
+
+重新建立 137 个 Blender 网格对象和十指甲床锚点，修正坐标转换、正面绕序与甲面平滑法线。保留原有存档结构、课程、月度款式和施工逻辑，并修复杏仁甲尖端的浮点边界问题。
+
+本轮 Windows 实机通过 **371 项检查、0 错误**，其中包括 25 套参考款的 250 个可编辑甲面。RTX 3060 验证场景约 59.6 FPS；手机性能未实测。图像、规则与几何报告见 `Verification/`。另在浏览器实际验证 WebGL 加载、改色、杏仁甲形和三维甲面选取。
+
+`-atelierVisualQa` 使用隔离临时存档，导出整桌、单手、甲面近景和侧面截图；`-atelierQa` 运行完整交互回归。两者均不写入玩家存档。
