@@ -1,4 +1,5 @@
 Unity native migration QA
+PASS Blender nail mesh responds to real physics picking
 PASS 25 authored appointments
 PASS native learning navigation
 PASS sequential lesson gate

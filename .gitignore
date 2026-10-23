@@ -21,3 +21,5 @@
 *.blend2
 /QA/
 .DS_Store
+
+/.vsconfig
