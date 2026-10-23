@@ -1,0 +1,1 @@
+137 runtime meshes; 10 complete fitted UV grids; 1040 sampled nail/hand contacts; no penetration below tolerance; skin textures; corrected spacing; saved scene prefab reference; 114943 vertices.

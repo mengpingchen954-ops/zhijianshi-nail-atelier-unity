@@ -12,7 +12,7 @@
 - Unity Hub 添加本目录，打开 `Assets/NailAtelier/Scenes/NailAtelier.unity`。停止播放时，Scene（场景）视图也能查看和编辑 `AtelierModels` 模型；运行时复用同一实例。
 - 找不到模型时，使用菜单 **指间诗 → 显示并定位工作室模型**，或选中层级中的 `AtelierModels`，鼠标放在 Scene 视图按 **F**。菜单会切换到带预览照明的三维视角。
 - 按 **▶ Play**，切到 **Game（游戏）** 查看完整界面和美甲交互。相机、灯光和交互 UI 仍在播放后创建；播放中的修改不会保存回编辑场景。
-- 若修改了 Blender 导出的网格数据，菜单 **指间诗 → 生成 Blender 模型与可玩场景**。此操作会新建迁移场景，请先保存自己正在编辑的场景。
+- 若修改了 Blender 导出的网格数据，使用 **指间诗 → 同步 Blender 模型（保留当前场景）** 更新资源。**生成 Blender 模型与可玩场景** 会新建迁移场景，仅在需要重建场景时使用。
 - 本机独立版：`E:/Meijia/Builds/Windows/NailAtelier.exe`，须保留旁边的 Data、MonoBleedingEdge 与 DLL。
 - WebGL 需要 HTTP 服务，不能直接双击 index.html。
 
@@ -74,3 +74,11 @@ Windows 原生版本通过完整纯色课与贴片服务的共享 UV 交互路�
 本轮 Windows 实机通过 **371 项检查、0 错误**，其中包括 25 套参考款的 250 个可编辑甲面。RTX 3060 验证场景约 59.6 FPS；手机性能未实测。图像、规则与几何报告见 `Verification/`。另在浏览器实际验证 WebGL 加载、改色、杏仁甲形和三维甲面选取。
 
 `-atelierVisualQa` 使用隔离临时存档，导出整桌、单手、甲面近景和侧面截图；`-atelierQa` 运行完整交互回归。两者均不写入玩家存档。
+
+## 纤长 CG 手 · 间距修正版同步
+
+已同步用户确认的女生纤长手型、手背/掌面贴图、贴合指尖的十个独立甲面，以及拉开的桌面器具间距和更宽取景。当前源文件与导出说明见 [SourceArt/CG-Hand-Refinement/README.md](SourceArt/CG-Hand-Refinement/README.md)。旧版建模脚本保留作历史来源，当前模型请使用该目录中的导出脚本。
+
+Windows 通过 **373 项交互检查、0 错误**；Unity 对实际运行网格完成 **1,040 个甲面接触采样**。WebGL 已实际验证加载、选指、改色及杏仁甲形，截图与报告在 `Verification/cg-*`。本机 Windows QA 场景约 60.0 FPS，手机性能未实测。
+
+本轮独立版位于 `E:/Meijia/Builds/CG-Hand-Sync/Windows/NailAtelier.exe`，WebGL 产物位于同级 `WebGL/`，并同步到项目 `web/`。现有编辑场景文件和用户未保存的编辑保留。

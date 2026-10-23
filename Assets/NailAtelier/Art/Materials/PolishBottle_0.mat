@@ -23,6 +23,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BackTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -33,6 +37,7 @@ Material:
     - _Glossiness: 0.82
     - _Metallic: 0
     - _Skin: 0
+    - _SkinTextures: 0
     - _Wood: 0
     m_Colors:
     - _Color: {r: 0.8509804, g: 0.5882353, b: 0.67058825, a: 1}
