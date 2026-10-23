@@ -1,0 +1,5 @@
+mergeInto(LibraryManager.library, {
+ SyncSave: function() {if(Module.atelierSyncBusy){Module.atelierSyncAgain=true;return;}Module.atelierSyncBusy=true;var sync=function(){FS.syncfs(false,function(err){if(err)console.error("Atelier save persistence",err);if(Module.atelierSyncAgain){Module.atelierSyncAgain=false;sync();}else Module.atelierSyncBusy=false;});};sync();},
+ Download: function(base64,name,mime) {var raw=atob(UTF8ToString(base64));var bytes=new Uint8Array(raw.length);for(var i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);var url=URL.createObjectURL(new Blob([bytes],{type:UTF8ToString(mime)}));var a=document.createElement('a');a.href=url;a.download=UTF8ToString(name);a.click();setTimeout(function(){URL.revokeObjectURL(url)},3000);},
+ Pick: function(receiver) {var target=UTF8ToString(receiver);var input=document.createElement('input');input.type='file';input.accept='.json,application/json';input.onchange=function(){var file=input.files[0];if(!file)return;if(file.size>20000000){alert('备份超过20MB');return;}file.text().then(function(text){SendMessage(target,'ImportText',text)});};input.click();}
+});

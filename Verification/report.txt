@@ -1,0 +1,122 @@
+Unity native migration QA
+PASS 25 authored appointments
+PASS native learning navigation
+PASS sequential lesson gate
+PASS blank plan separate from reference
+PASS native design controls satisfy lesson
+PASS design to service transition
+PASS inspection through shared hit path
+PASS same-hand assistance
+PASS stage advance
+PASS moving file completes free edge
+PASS file manual shared UV interaction
+PASS file ten-finger stage complete
+PASS dust manual shared UV interaction
+PASS dust manual shared UV interaction
+PASS dust ten-finger stage complete
+PASS base manual shared UV interaction
+PASS base manual shared UV interaction
+PASS base ten-finger stage complete
+PASS build manual shared UV interaction
+PASS build manual shared UV interaction
+PASS build ten-finger stage complete
+PASS cureBase interrupted curing leaves hand incomplete
+PASS cureBase whole hand cures after timer
+PASS cureBase interrupted curing leaves hand incomplete
+PASS cureBase whole hand cures after timer
+PASS cureBase ten-finger stage complete
+PASS color manual shared UV interaction
+PASS color manual shared UV interaction
+PASS color ten-finger stage complete
+PASS cureColor interrupted curing leaves hand incomplete
+PASS cureColor whole hand cures after timer
+PASS cureColor interrupted curing leaves hand incomplete
+PASS cureColor whole hand cures after timer
+PASS cureColor ten-finger stage complete
+PASS top manual shared UV interaction
+PASS top manual shared UV interaction
+PASS top ten-finger stage complete
+PASS cureTop interrupted curing leaves hand incomplete
+PASS cureTop whole hand cures after timer
+PASS cureTop interrupted curing leaves hand incomplete
+PASS cureTop whole hand cures after timer
+PASS cureTop ten-finger stage complete
+PASS lesson-1 complete service through interaction path
+PASS inspect manual shared UV interaction
+PASS inspect manual shared UV interaction
+PASS inspect ten-finger stage complete
+PASS file manual shared UV interaction
+PASS file manual shared UV interaction
+PASS file ten-finger stage complete
+PASS dust manual shared UV interaction
+PASS dust manual shared UV interaction
+PASS dust ten-finger stage complete
+PASS base manual shared UV interaction
+PASS base manual shared UV interaction
+PASS base ten-finger stage complete
+PASS fit manual shared UV interaction
+PASS fit manual shared UV interaction
+PASS fit ten-finger stage complete
+PASS bond rejects starting in middle
+PASS bond manual shared UV interaction
+PASS bond rejects starting in middle
+PASS bond manual shared UV interaction
+PASS bond ten-finger stage complete
+PASS cureBase interrupted curing leaves hand incomplete
+PASS cureBase whole hand cures after timer
+PASS cureBase interrupted curing leaves hand incomplete
+PASS cureBase whole hand cures after timer
+PASS cureBase ten-finger stage complete
+PASS color manual shared UV interaction
+PASS color manual shared UV interaction
+PASS color ten-finger stage complete
+PASS decor manual shared UV interaction
+PASS decor manual shared UV interaction
+PASS decor ten-finger stage complete
+PASS cureColor interrupted curing leaves hand incomplete
+PASS cureColor whole hand cures after timer
+PASS cureColor interrupted curing leaves hand incomplete
+PASS cureColor whole hand cures after timer
+PASS cureColor ten-finger stage complete
+PASS top manual shared UV interaction
+PASS top manual shared UV interaction
+PASS top ten-finger stage complete
+PASS cureTop interrupted curing leaves hand incomplete
+PASS cureTop whole hand cures after timer
+PASS cureTop interrupted curing leaves hand incomplete
+PASS cureTop whole hand cures after timer
+PASS cureTop ten-finger stage complete
+PASS xia complete service through interaction path
+PASS lesson-1 reference meets native requirements
+PASS lesson-1 duplicate claim is idempotent
+PASS lesson-2 reference meets native requirements
+PASS lesson-2 duplicate claim is idempotent
+PASS lesson-3 reference meets native requirements
+PASS lesson-3 duplicate claim is idempotent
+PASS lesson-4 reference meets native requirements
+PASS lesson-4 duplicate claim is idempotent
+PASS lesson-5 reference meets native requirements
+PASS lesson-5 duplicate claim is idempotent
+PASS lin reference meets native requirements
+PASS lin duplicate claim is idempotent
+PASS wen reference meets native requirements
+PASS wen duplicate claim is idempotent
+PASS qiao reference meets native requirements
+PASS qiao duplicate claim is idempotent
+PASS xia reference meets native requirements
+PASS xia duplicate claim is idempotent
+PASS tang reference meets native requirements
+PASS tang duplicate claim is idempotent
+PASS return-lin reference meets native requirements
+PASS return-lin duplicate claim is idempotent
+PASS regular-customer bonus
+PASS six useful purchases
+PASS duplicate purchase does not spend
+PASS owned item disabled in native UI
+PASS purchases and album survive reload
+PASS invalid purchase backup rejected
+PASS full backup roundtrip
+PASS shop material usable in free creator
+PASS UV free drawing
+measured render loop 59.8 fps (this machine / QA scene)
+ERRORS 0
