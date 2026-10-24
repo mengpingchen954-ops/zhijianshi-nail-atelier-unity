@@ -1,0 +1,193 @@
+{
+  "scale": 0.004617142857142857,
+  "wrist": [
+    1603,
+    900
+  ],
+  "bounds": [
+    1248,
+    1792,
+    10,
+    1040
+  ],
+  "wrist_y": -1.74,
+  "landmarks": {
+    "thumb": {
+      "axis": [
+        [
+          1439,
+          604
+        ],
+        [
+          1395,
+          494
+        ],
+        [
+          1335,
+          413
+        ],
+        [
+          1286,
+          379
+        ]
+      ],
+      "widths": [
+        33,
+        30,
+        25,
+        19
+      ],
+      "nail_root": [
+        1307,
+        400
+      ],
+      "nail_tip": [
+        1276,
+        368
+      ],
+      "nail_width": 14
+    },
+    "index": {
+      "axis": [
+        [
+          1459,
+          439
+        ],
+        [
+          1426,
+          295
+        ],
+        [
+          1403,
+          198
+        ],
+        [
+          1384,
+          108
+        ]
+      ],
+      "widths": [
+        28,
+        25,
+        23,
+        20
+      ],
+      "nail_root": [
+        1398,
+        153
+      ],
+      "nail_tip": [
+        1378,
+        96
+      ],
+      "nail_width": 30
+    },
+    "middle": {
+      "axis": [
+        [
+          1527,
+          414
+        ],
+        [
+          1528,
+          263
+        ],
+        [
+          1525,
+          148
+        ],
+        [
+          1522,
+          40
+        ]
+      ],
+      "widths": [
+        30,
+        28,
+        25,
+        22
+      ],
+      "nail_root": [
+        1520,
+        87
+      ],
+      "nail_tip": [
+        1520,
+        25
+      ],
+      "nail_width": 35
+    },
+    "ring": {
+      "axis": [
+        [
+          1595,
+          441
+        ],
+        [
+          1608,
+          293
+        ],
+        [
+          1617,
+          197
+        ],
+        [
+          1623,
+          105
+        ]
+      ],
+      "widths": [
+        28,
+        25,
+        23,
+        20
+      ],
+      "nail_root": [
+        1614,
+        153
+      ],
+      "nail_tip": [
+        1623,
+        89
+      ],
+      "nail_width": 31
+    },
+    "little": {
+      "axis": [
+        [
+          1652,
+          505
+        ],
+        [
+          1691,
+          379
+        ],
+        [
+          1718,
+          297
+        ],
+        [
+          1735,
+          225
+        ]
+      ],
+      "widths": [
+        25,
+        23,
+        20,
+        17
+      ],
+      "nail_root": [
+        1722,
+        270
+      ],
+      "nail_tip": [
+        1740,
+        210
+      ],
+      "nail_width": 27
+    }
+  },
+  "reference": "Actual user attachment, 2048x1144; dorsal silhouette and nail landmarks measured directly",
+  "limit": "Palm and side show different poses; depth is sculpted anatomical interpretation, not an exact multiview scan."
+}

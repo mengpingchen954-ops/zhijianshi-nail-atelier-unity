@@ -9,7 +9,7 @@ from mathutils.bvhtree import BVHTree
 
 ROOT = Path(__file__).resolve().parent
 PROJECT = ROOT.parents[1]
-SOURCE = PROJECT / 'SourceArt/Reference-Hand-2026/指间诗-参考图手型与甲床优化.blend'
+SOURCE = PROJECT / 'SourceArt/Exact-Reference-Hand/指间诗-原图轮廓重建.blend'
 ART = PROJECT / 'Assets/NailAtelier/Art'
 bpy.ops.wm.open_mainfile(filepath=str(SOURCE))
 source_hash = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
@@ -101,6 +101,8 @@ for name, mesh in meshes.items():
     entry = {'name': name, 'vertices': vertices, 'normals': normals, 'uv': uv, 'triangles': triangles, 'colors': colors,
              'color': list(material.diffuse_color), 'metallic': bsdf.inputs['Metallic'].default_value,
              'roughness': bsdf.inputs['Roughness'].default_value, 'kind': material.get('kind', 'ceramic')}
+    if name.startswith(('Cuff_', 'Sleeve_', 'HandDetail_')):
+        entry['color'] = [c*12.92 if c<.0031308 else 1.055*c**(1/2.4)-.055 for c in material.diffuse_color[:3]]+[1]
     if name.startswith('Hand_'):
         entry.update(color=[1, 1, 1, 1], albedo='Assets/NailAtelier/Art/Textures/CGHands/skin-dorsal.png', backAlbedo='Assets/NailAtelier/Art/Textures/CGHands/skin-palmar.png')
     if name.startswith('Nail_'):
@@ -124,7 +126,7 @@ for name, mesh in meshes.items():
     print('EXPORTED', name, len(vertices) // 3, len(triangles) // 3, flush=True)
 anchors.sort(key=lambda a: a['index'])
 assert [a['index'] for a in anchors] == list(range(10))
-assert len(objects) == 137
+assert len(objects) == 141
 (ART / 'atelier-meshes.json').write_text(json.dumps({'objects': objects, 'anchors': anchors}, separators=(',', ':')), encoding='utf-8')
 bpy.ops.object.select_all(action='DESELECT')
 for obj in scene.objects:

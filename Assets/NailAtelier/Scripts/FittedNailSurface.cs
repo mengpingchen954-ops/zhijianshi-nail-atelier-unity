@@ -20,11 +20,23 @@ public sealed class FittedNailSurface {
   }
   foreach(bool found in present)if(!found)throw new InvalidOperationException("Blender 甲面 UV 网格不完整。");
  }
+ static Vector3 Cubic(Vector3 a,Vector3 b,Vector3 c,Vector3 d,float t){
+  return b+.5f*t*(c-a+t*(2*a-5*b+4*c-d+t*(3*(b-c)+d-a)));
+ }
+ Vector3 Grid(int x,int y){return grid[Mathf.Clamp(y,0,rows)*(columns+1)+Mathf.Clamp(x,0,columns)];}
+ Vector3 Row(int y,int x,float t){return Cubic(Grid(x-1,y),Grid(x,y),Grid(x+1,y),Grid(x+2,y),t);}
  Vector3 Sample(float u,float v){
   float x=Mathf.Clamp01(u)*columns,y=Mathf.Clamp01(v)*rows;
   int ix=Mathf.Min(columns-1,Mathf.FloorToInt(x)),iy=Mathf.Min(rows-1,Mathf.FloorToInt(y));
-  int a=iy*(columns+1)+ix;
-  return Vector3.Lerp(Vector3.Lerp(grid[a],grid[a+1],x-ix),Vector3.Lerp(grid[a+columns+1],grid[a+columns+2],x-ix),y-iy);
+  return Cubic(Row(iy-1,ix,x-ix),Row(iy,ix,x-ix),Row(iy+1,ix,x-ix),Row(iy+2,ix,x-ix),y-iy);
+ }
+ // Retain the editable source grid, then subdivide the visible surface for close-up manicure reflections.
+ public void Refine(Mesh mesh){
+  int width=columns*2,height=rows*2;var points=new Vector3[(width+1)*(height+1)];var uv=new Vector2[points.Length];var triangles=new int[width*height*6];
+  for(int y=0;y<=height;y++)for(int x=0;x<=width;x++){int k=y*(width+1)+x;uv[k]=new Vector2(x/(float)width,y/(float)height);points[k]=Sample(uv[k].x,uv[k].y);}
+  for(int y=0;y<height;y++)for(int x=0;x<width;x++){int k=(y*width+x)*6,a=y*(width+1)+x;triangles[k]=a;triangles[k+1]=a+width+1;triangles[k+2]=a+1;triangles[k+3]=a+1;triangles[k+4]=a+width+1;triangles[k+5]=a+width+2;}
+  if(Vector3.Dot(Vector3.Cross(points[width+1]-points[0],points[1]-points[0]),normal)<0)for(int k=0;k<triangles.Length;k+=3){int a=triangles[k];triangles[k]=triangles[k+2];triangles[k+2]=a;}
+  mesh.Clear();mesh.vertices=points;mesh.uv=uv;mesh.triangles=triangles;mesh.RecalculateNormals();mesh.RecalculateTangents();mesh.RecalculateBounds();
  }
  public Vector3 Point(Nail nail,Vector2 uv){
   float u=uv.x,v=uv.y,extension=(nail.length-.45f)*.60f;

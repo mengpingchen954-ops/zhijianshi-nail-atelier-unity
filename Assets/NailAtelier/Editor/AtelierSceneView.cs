@@ -58,14 +58,14 @@ public static class AtelierSceneView {
   var app=scene.GetRootGameObjects().Select(r=>r.GetComponent<AtelierApp>()).First(a=>a);
   int count=scene.GetRootGameObjects().Length;
   if(EnsureModels(scene)||scene.GetRootGameObjects().Length!=count)throw new Exception("模型重复生成");
-  if(app.sceneModels.GetComponentsInChildren<MeshRenderer>().Length!=137)throw new Exception("场景模型不完整");
+  if(app.sceneModels.GetComponentsInChildren<MeshRenderer>().Length!=141)throw new Exception("场景模型不完整");
   var sourceMesh=app.sceneModels.transform.Find("Nail_00").GetComponent<MeshFilter>().sharedMesh;
   EditorSceneManager.SaveScene(scene);
   scene=EditorSceneManager.OpenScene(ScenePath);
   app=scene.GetRootGameObjects().Select(r=>r.GetComponent<AtelierApp>()).First(a=>a);
   if(!app.sceneModels||app.sceneModels.transform.Find("Nail_00").GetComponent<MeshFilter>().sharedMesh!=sourceMesh)throw new Exception("模型引用未保存");
   AtelierBuild.RunRules();
-  Debug.Log("ATELIER_EDITOR_SCENE_PASS 137 visible meshes / idempotent upgrade / saved prefab references");
+  Debug.Log("ATELIER_EDITOR_SCENE_PASS 141 visible meshes / idempotent upgrade / saved prefab references");
  }
 }
 }

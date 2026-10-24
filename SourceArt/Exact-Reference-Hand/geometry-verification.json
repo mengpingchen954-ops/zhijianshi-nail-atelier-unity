@@ -1,0 +1,34 @@
+{
+  "reference": "Actual user attachment, 2048x1144; dorsal silhouette and nail landmarks measured directly",
+  "limit": "Palm and side show different poses; depth is sculpted anatomical interpretation, not an exact multiview scan.",
+  "source": "E:\\Meijia\\meijia\\SourceArt\\Exact-Reference-Hand\\指间诗-原图轮廓重建.blend",
+  "nails": [
+    {
+      "finger": "thumb",
+      "width": 0.15295126704944115,
+      "length": 0.20570906327586097
+    },
+    {
+      "finger": "index",
+      "width": 0.13852918750392032,
+      "length": 0.27890841826222273
+    },
+    {
+      "finger": "middle",
+      "width": 0.16161455543001024,
+      "length": 0.28628462807823396
+    },
+    {
+      "finger": "ring",
+      "width": 0.14313916093721926,
+      "length": 0.29840541205303844
+    },
+    {
+      "finger": "little",
+      "width": 0.12466383248422205,
+      "length": 0.2892310993497675
+    }
+  ],
+  "runtime_mesh_count": 141,
+  "actual_skin_silhouette_iou": 0.9836129535700351
+}

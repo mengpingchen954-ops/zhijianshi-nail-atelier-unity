@@ -1,0 +1,389 @@
+Unity native migration QA
+PASS runtime reuses editable scene models
+PASS one studio model instance during play
+PASS lin finger 0 finite editable mesh
+PASS lin finger 1 finite editable mesh
+PASS lin finger 2 finite editable mesh
+PASS lin finger 3 finite editable mesh
+PASS lin finger 4 finite editable mesh
+PASS lin finger 5 finite editable mesh
+PASS lin finger 6 finite editable mesh
+PASS lin finger 7 finite editable mesh
+PASS lin finger 8 finite editable mesh
+PASS lin finger 9 finite editable mesh
+PASS su finger 0 finite editable mesh
+PASS su finger 1 finite editable mesh
+PASS su finger 2 finite editable mesh
+PASS su finger 3 finite editable mesh
+PASS su finger 4 finite editable mesh
+PASS su finger 5 finite editable mesh
+PASS su finger 6 finite editable mesh
+PASS su finger 7 finite editable mesh
+PASS su finger 8 finite editable mesh
+PASS su finger 9 finite editable mesh
+PASS xia finger 0 finite editable mesh
+PASS xia finger 1 finite editable mesh
+PASS xia finger 2 finite editable mesh
+PASS xia finger 3 finite editable mesh
+PASS xia finger 4 finite editable mesh
+PASS xia finger 5 finite editable mesh
+PASS xia finger 6 finite editable mesh
+PASS xia finger 7 finite editable mesh
+PASS xia finger 8 finite editable mesh
+PASS xia finger 9 finite editable mesh
+PASS wen finger 0 finite editable mesh
+PASS wen finger 1 finite editable mesh
+PASS wen finger 2 finite editable mesh
+PASS wen finger 3 finite editable mesh
+PASS wen finger 4 finite editable mesh
+PASS wen finger 5 finite editable mesh
+PASS wen finger 6 finite editable mesh
+PASS wen finger 7 finite editable mesh
+PASS wen finger 8 finite editable mesh
+PASS wen finger 9 finite editable mesh
+PASS qiao finger 0 finite editable mesh
+PASS qiao finger 1 finite editable mesh
+PASS qiao finger 2 finite editable mesh
+PASS qiao finger 3 finite editable mesh
+PASS qiao finger 4 finite editable mesh
+PASS qiao finger 5 finite editable mesh
+PASS qiao finger 6 finite editable mesh
+PASS qiao finger 7 finite editable mesh
+PASS qiao finger 8 finite editable mesh
+PASS qiao finger 9 finite editable mesh
+PASS tang finger 0 finite editable mesh
+PASS tang finger 1 finite editable mesh
+PASS tang finger 2 finite editable mesh
+PASS tang finger 3 finite editable mesh
+PASS tang finger 4 finite editable mesh
+PASS tang finger 5 finite editable mesh
+PASS tang finger 6 finite editable mesh
+PASS tang finger 7 finite editable mesh
+PASS tang finger 8 finite editable mesh
+PASS tang finger 9 finite editable mesh
+PASS lu finger 0 finite editable mesh
+PASS lu finger 1 finite editable mesh
+PASS lu finger 2 finite editable mesh
+PASS lu finger 3 finite editable mesh
+PASS lu finger 4 finite editable mesh
+PASS lu finger 5 finite editable mesh
+PASS lu finger 6 finite editable mesh
+PASS lu finger 7 finite editable mesh
+PASS lu finger 8 finite editable mesh
+PASS lu finger 9 finite editable mesh
+PASS zhou finger 0 finite editable mesh
+PASS zhou finger 1 finite editable mesh
+PASS zhou finger 2 finite editable mesh
+PASS zhou finger 3 finite editable mesh
+PASS zhou finger 4 finite editable mesh
+PASS zhou finger 5 finite editable mesh
+PASS zhou finger 6 finite editable mesh
+PASS zhou finger 7 finite editable mesh
+PASS zhou finger 8 finite editable mesh
+PASS zhou finger 9 finite editable mesh
+PASS trend-liquid finger 0 finite editable mesh
+PASS trend-liquid finger 1 finite editable mesh
+PASS trend-liquid finger 2 finite editable mesh
+PASS trend-liquid finger 3 finite editable mesh
+PASS trend-liquid finger 4 finite editable mesh
+PASS trend-liquid finger 5 finite editable mesh
+PASS trend-liquid finger 6 finite editable mesh
+PASS trend-liquid finger 7 finite editable mesh
+PASS trend-liquid finger 8 finite editable mesh
+PASS trend-liquid finger 9 finite editable mesh
+PASS trend-velvet finger 0 finite editable mesh
+PASS trend-velvet finger 1 finite editable mesh
+PASS trend-velvet finger 2 finite editable mesh
+PASS trend-velvet finger 3 finite editable mesh
+PASS trend-velvet finger 4 finite editable mesh
+PASS trend-velvet finger 5 finite editable mesh
+PASS trend-velvet finger 6 finite editable mesh
+PASS trend-velvet finger 7 finite editable mesh
+PASS trend-velvet finger 8 finite editable mesh
+PASS trend-velvet finger 9 finite editable mesh
+PASS trend-syrup finger 0 finite editable mesh
+PASS trend-syrup finger 1 finite editable mesh
+PASS trend-syrup finger 2 finite editable mesh
+PASS trend-syrup finger 3 finite editable mesh
+PASS trend-syrup finger 4 finite editable mesh
+PASS trend-syrup finger 5 finite editable mesh
+PASS trend-syrup finger 6 finite editable mesh
+PASS trend-syrup finger 7 finite editable mesh
+PASS trend-syrup finger 8 finite editable mesh
+PASS trend-syrup finger 9 finite editable mesh
+PASS trend-micro finger 0 finite editable mesh
+PASS trend-micro finger 1 finite editable mesh
+PASS trend-micro finger 2 finite editable mesh
+PASS trend-micro finger 3 finite editable mesh
+PASS trend-micro finger 4 finite editable mesh
+PASS trend-micro finger 5 finite editable mesh
+PASS trend-micro finger 6 finite editable mesh
+PASS trend-micro finger 7 finite editable mesh
+PASS trend-micro finger 8 finite editable mesh
+PASS trend-micro finger 9 finite editable mesh
+PASS trend-chrome finger 0 finite editable mesh
+PASS trend-chrome finger 1 finite editable mesh
+PASS trend-chrome finger 2 finite editable mesh
+PASS trend-chrome finger 3 finite editable mesh
+PASS trend-chrome finger 4 finite editable mesh
+PASS trend-chrome finger 5 finite editable mesh
+PASS trend-chrome finger 6 finite editable mesh
+PASS trend-chrome finger 7 finite editable mesh
+PASS trend-chrome finger 8 finite editable mesh
+PASS trend-chrome finger 9 finite editable mesh
+PASS trend-aura finger 0 finite editable mesh
+PASS trend-aura finger 1 finite editable mesh
+PASS trend-aura finger 2 finite editable mesh
+PASS trend-aura finger 3 finite editable mesh
+PASS trend-aura finger 4 finite editable mesh
+PASS trend-aura finger 5 finite editable mesh
+PASS trend-aura finger 6 finite editable mesh
+PASS trend-aura finger 7 finite editable mesh
+PASS trend-aura finger 8 finite editable mesh
+PASS trend-aura finger 9 finite editable mesh
+PASS lesson-1 finger 0 finite editable mesh
+PASS lesson-1 finger 1 finite editable mesh
+PASS lesson-1 finger 2 finite editable mesh
+PASS lesson-1 finger 3 finite editable mesh
+PASS lesson-1 finger 4 finite editable mesh
+PASS lesson-1 finger 5 finite editable mesh
+PASS lesson-1 finger 6 finite editable mesh
+PASS lesson-1 finger 7 finite editable mesh
+PASS lesson-1 finger 8 finite editable mesh
+PASS lesson-1 finger 9 finite editable mesh
+PASS lesson-2 finger 0 finite editable mesh
+PASS lesson-2 finger 1 finite editable mesh
+PASS lesson-2 finger 2 finite editable mesh
+PASS lesson-2 finger 3 finite editable mesh
+PASS lesson-2 finger 4 finite editable mesh
+PASS lesson-2 finger 5 finite editable mesh
+PASS lesson-2 finger 6 finite editable mesh
+PASS lesson-2 finger 7 finite editable mesh
+PASS lesson-2 finger 8 finite editable mesh
+PASS lesson-2 finger 9 finite editable mesh
+PASS lesson-3 finger 0 finite editable mesh
+PASS lesson-3 finger 1 finite editable mesh
+PASS lesson-3 finger 2 finite editable mesh
+PASS lesson-3 finger 3 finite editable mesh
+PASS lesson-3 finger 4 finite editable mesh
+PASS lesson-3 finger 5 finite editable mesh
+PASS lesson-3 finger 6 finite editable mesh
+PASS lesson-3 finger 7 finite editable mesh
+PASS lesson-3 finger 8 finite editable mesh
+PASS lesson-3 finger 9 finite editable mesh
+PASS lesson-4 finger 0 finite editable mesh
+PASS lesson-4 finger 1 finite editable mesh
+PASS lesson-4 finger 2 finite editable mesh
+PASS lesson-4 finger 3 finite editable mesh
+PASS lesson-4 finger 4 finite editable mesh
+PASS lesson-4 finger 5 finite editable mesh
+PASS lesson-4 finger 6 finite editable mesh
+PASS lesson-4 finger 7 finite editable mesh
+PASS lesson-4 finger 8 finite editable mesh
+PASS lesson-4 finger 9 finite editable mesh
+PASS lesson-5 finger 0 finite editable mesh
+PASS lesson-5 finger 1 finite editable mesh
+PASS lesson-5 finger 2 finite editable mesh
+PASS lesson-5 finger 3 finite editable mesh
+PASS lesson-5 finger 4 finite editable mesh
+PASS lesson-5 finger 5 finite editable mesh
+PASS lesson-5 finger 6 finite editable mesh
+PASS lesson-5 finger 7 finite editable mesh
+PASS lesson-5 finger 8 finite editable mesh
+PASS lesson-5 finger 9 finite editable mesh
+PASS return-lin finger 0 finite editable mesh
+PASS return-lin finger 1 finite editable mesh
+PASS return-lin finger 2 finite editable mesh
+PASS return-lin finger 3 finite editable mesh
+PASS return-lin finger 4 finite editable mesh
+PASS return-lin finger 5 finite editable mesh
+PASS return-lin finger 6 finite editable mesh
+PASS return-lin finger 7 finite editable mesh
+PASS return-lin finger 8 finite editable mesh
+PASS return-lin finger 9 finite editable mesh
+PASS return-wen finger 0 finite editable mesh
+PASS return-wen finger 1 finite editable mesh
+PASS return-wen finger 2 finite editable mesh
+PASS return-wen finger 3 finite editable mesh
+PASS return-wen finger 4 finite editable mesh
+PASS return-wen finger 5 finite editable mesh
+PASS return-wen finger 6 finite editable mesh
+PASS return-wen finger 7 finite editable mesh
+PASS return-wen finger 8 finite editable mesh
+PASS return-wen finger 9 finite editable mesh
+PASS return-tang finger 0 finite editable mesh
+PASS return-tang finger 1 finite editable mesh
+PASS return-tang finger 2 finite editable mesh
+PASS return-tang finger 3 finite editable mesh
+PASS return-tang finger 4 finite editable mesh
+PASS return-tang finger 5 finite editable mesh
+PASS return-tang finger 6 finite editable mesh
+PASS return-tang finger 7 finite editable mesh
+PASS return-tang finger 8 finite editable mesh
+PASS return-tang finger 9 finite editable mesh
+PASS return-su finger 0 finite editable mesh
+PASS return-su finger 1 finite editable mesh
+PASS return-su finger 2 finite editable mesh
+PASS return-su finger 3 finite editable mesh
+PASS return-su finger 4 finite editable mesh
+PASS return-su finger 5 finite editable mesh
+PASS return-su finger 6 finite editable mesh
+PASS return-su finger 7 finite editable mesh
+PASS return-su finger 8 finite editable mesh
+PASS return-su finger 9 finite editable mesh
+PASS return-xia finger 0 finite editable mesh
+PASS return-xia finger 1 finite editable mesh
+PASS return-xia finger 2 finite editable mesh
+PASS return-xia finger 3 finite editable mesh
+PASS return-xia finger 4 finite editable mesh
+PASS return-xia finger 5 finite editable mesh
+PASS return-xia finger 6 finite editable mesh
+PASS return-xia finger 7 finite editable mesh
+PASS return-xia finger 8 finite editable mesh
+PASS return-xia finger 9 finite editable mesh
+PASS return-qiao finger 0 finite editable mesh
+PASS return-qiao finger 1 finite editable mesh
+PASS return-qiao finger 2 finite editable mesh
+PASS return-qiao finger 3 finite editable mesh
+PASS return-qiao finger 4 finite editable mesh
+PASS return-qiao finger 5 finite editable mesh
+PASS return-qiao finger 6 finite editable mesh
+PASS return-qiao finger 7 finite editable mesh
+PASS return-qiao finger 8 finite editable mesh
+PASS return-qiao finger 9 finite editable mesh
+PASS Blender nail mesh responds to real physics picking
+PASS 25 authored appointments
+PASS native learning navigation
+PASS sequential lesson gate
+PASS gel and refraction shaders supported by player graphics API
+PASS GPU optical coverage visibly changes gel absorption
+PASS GPU matte removes sharp wet reflections
+PASS GPU magnet moves magnetic light band
+PASS GPU service coverage reveals polish locally
+PASS GPU transparent droplet is visible over nail artwork
+PASS pooled droplet can become opaque pearl
+PASS pooled pearl can become refractive crystal
+PASS layering retains optical density in artwork alpha
+PASS paint remains opaque above sheer gel
+PASS eraser restores underlying pattern and optical density
+PASS blank plan separate from reference
+PASS native design controls satisfy lesson
+PASS design to service transition
+PASS inspection through shared hit path
+PASS same-hand assistance
+PASS stage advance
+PASS moving file completes free edge
+PASS file manual shared UV interaction
+PASS file ten-finger stage complete
+PASS dust manual shared UV interaction
+PASS dust manual shared UV interaction
+PASS dust ten-finger stage complete
+PASS base manual shared UV interaction
+PASS base manual shared UV interaction
+PASS base ten-finger stage complete
+PASS build manual shared UV interaction
+PASS build manual shared UV interaction
+PASS build ten-finger stage complete
+PASS cureBase interrupted curing leaves hand incomplete
+PASS cureBase whole hand cures after timer
+PASS cureBase interrupted curing leaves hand incomplete
+PASS cureBase whole hand cures after timer
+PASS cureBase ten-finger stage complete
+PASS color manual shared UV interaction
+PASS color manual shared UV interaction
+PASS color ten-finger stage complete
+PASS cureColor interrupted curing leaves hand incomplete
+PASS cureColor whole hand cures after timer
+PASS cureColor interrupted curing leaves hand incomplete
+PASS cureColor whole hand cures after timer
+PASS cureColor ten-finger stage complete
+PASS top manual shared UV interaction
+PASS top manual shared UV interaction
+PASS top ten-finger stage complete
+PASS cureTop interrupted curing leaves hand incomplete
+PASS cureTop whole hand cures after timer
+PASS cureTop interrupted curing leaves hand incomplete
+PASS cureTop whole hand cures after timer
+PASS cureTop ten-finger stage complete
+PASS lesson-1 complete service through interaction path
+PASS inspect manual shared UV interaction
+PASS inspect manual shared UV interaction
+PASS inspect ten-finger stage complete
+PASS file manual shared UV interaction
+PASS file manual shared UV interaction
+PASS file ten-finger stage complete
+PASS dust manual shared UV interaction
+PASS dust manual shared UV interaction
+PASS dust ten-finger stage complete
+PASS base manual shared UV interaction
+PASS base manual shared UV interaction
+PASS base ten-finger stage complete
+PASS fit manual shared UV interaction
+PASS fit manual shared UV interaction
+PASS fit ten-finger stage complete
+PASS bond rejects starting in middle
+PASS bond manual shared UV interaction
+PASS bond rejects starting in middle
+PASS bond manual shared UV interaction
+PASS bond ten-finger stage complete
+PASS cureBase interrupted curing leaves hand incomplete
+PASS cureBase whole hand cures after timer
+PASS cureBase interrupted curing leaves hand incomplete
+PASS cureBase whole hand cures after timer
+PASS cureBase ten-finger stage complete
+PASS color manual shared UV interaction
+PASS color manual shared UV interaction
+PASS color ten-finger stage complete
+PASS decor manual shared UV interaction
+PASS decor manual shared UV interaction
+PASS decor ten-finger stage complete
+PASS cureColor interrupted curing leaves hand incomplete
+PASS cureColor whole hand cures after timer
+PASS cureColor interrupted curing leaves hand incomplete
+PASS cureColor whole hand cures after timer
+PASS cureColor ten-finger stage complete
+PASS top manual shared UV interaction
+PASS top manual shared UV interaction
+PASS top ten-finger stage complete
+PASS cureTop interrupted curing leaves hand incomplete
+PASS cureTop whole hand cures after timer
+PASS cureTop interrupted curing leaves hand incomplete
+PASS cureTop whole hand cures after timer
+PASS cureTop ten-finger stage complete
+PASS xia complete service through interaction path
+PASS lesson-1 reference meets native requirements
+PASS lesson-1 duplicate claim is idempotent
+PASS lesson-2 reference meets native requirements
+PASS lesson-2 duplicate claim is idempotent
+PASS lesson-3 reference meets native requirements
+PASS lesson-3 duplicate claim is idempotent
+PASS lesson-4 reference meets native requirements
+PASS lesson-4 duplicate claim is idempotent
+PASS lesson-5 reference meets native requirements
+PASS lesson-5 duplicate claim is idempotent
+PASS lin reference meets native requirements
+PASS lin duplicate claim is idempotent
+PASS wen reference meets native requirements
+PASS wen duplicate claim is idempotent
+PASS qiao reference meets native requirements
+PASS qiao duplicate claim is idempotent
+PASS xia reference meets native requirements
+PASS xia duplicate claim is idempotent
+PASS tang reference meets native requirements
+PASS tang duplicate claim is idempotent
+PASS return-lin reference meets native requirements
+PASS return-lin duplicate claim is idempotent
+PASS regular-customer bonus
+PASS six useful purchases
+PASS duplicate purchase does not spend
+PASS owned item disabled in native UI
+PASS purchases and album survive reload
+PASS invalid purchase backup rejected
+PASS full backup roundtrip
+PASS shop material usable in free creator
+PASS UV free drawing
+normal atelier: 60.0 fps (this machine)
+normal atelier: FrameTiming main thread 0.91 ms, present wait 15.75 ms, GPU 15.46 ms
+180 raised decorations: 60.0 fps (this machine)
+180 raised decorations: FrameTiming main thread 0.98 ms, present wait 15.68 ms, GPU 15.51 ms
+ERRORS 0

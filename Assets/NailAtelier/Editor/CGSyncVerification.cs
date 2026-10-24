@@ -13,13 +13,16 @@ public static class CGSyncVerification {
   var prefab=Resources.Load<GameObject>("NailAtelier/AtelierModels");
   var room=UnityEngine.Object.Instantiate(prefab);
   var anchors=JsonUtility.FromJson<AnchorList>(Resources.Load<TextAsset>("NailAtelier/Anchors").text).anchors;
-  if(room.GetComponentsInChildren<MeshRenderer>().Length!=137||anchors.Length!=10)throw new Exception("Incomplete CG scene");
+  if(room.GetComponentsInChildren<MeshRenderer>().Length!=141||anchors.Length!=10)throw new Exception("Incomplete CG scene");
   var mat=room.transform.Find("WorkMat").GetComponent<Renderer>().bounds;
   int picked=0;
   for(int i=0;i<10;i++){
    var mesh=room.transform.Find("Nail_"+i.ToString("00")).GetComponent<MeshFilter>().sharedMesh;
    if(mesh.vertexCount!=1025)throw new Exception("Fitted nail grid was not imported: "+i);
    var surface=new FittedNailSurface(mesh,anchors[i]);
+   var refined=UnityEngine.Object.Instantiate(mesh);surface.Refine(refined);
+   if(Vector3.Dot(refined.normals[refined.vertexCount/2],anchors[i].normal)<.5f||refined.vertices.Any(p=>float.IsNaN(p.x)||float.IsInfinity(p.y)))throw new Exception("Invalid refined nail orientation: "+i);
+   UnityEngine.Object.DestroyImmediate(refined);
    foreach(string shape in new[]{"round","square","almond","oval","coffin"})for(int col=0;col<=4;col++){
     var uv=new Vector2(col/4f,.10f);
     if(Vector3.Distance(surface.Point(new Nail(),uv),surface.Point(new Nail{shape=shape},uv))>.00001f)throw new Exception("Shape changes fitted cuticle: "+i+" "+shape);
@@ -48,9 +51,9 @@ public static class CGSyncVerification {
   UnityEngine.Object.DestroyImmediate(room);
   var scene=EditorSceneManager.OpenScene("Assets/NailAtelier/Scenes/NailAtelier.unity");
   var app=scene.GetRootGameObjects().Select(o=>o.GetComponent<AtelierApp>()).First(a=>a);
-  if(!app.sceneModels||app.sceneModels.GetComponentsInChildren<MeshRenderer>().Length!=137)throw new Exception("Saved scene lost prefab reference");
+  if(!app.sceneModels||app.sceneModels.GetComponentsInChildren<MeshRenderer>().Length!=141)throw new Exception("Saved scene lost prefab reference");
   Directory.CreateDirectory("Verification");
-  File.WriteAllText("Verification/cg-unity-sync.txt","137 runtime meshes; 10 complete fitted UV grids; "+picked+" sampled nail/hand contacts; no penetration below tolerance; skin textures; corrected spacing; saved scene prefab reference; "+vertices+" vertices.\n");
+  File.WriteAllText("Verification/cg-unity-sync.txt","141 runtime meshes; 10 complete fitted UV grids; "+picked+" sampled nail/hand contacts; no penetration below tolerance; skin textures; corrected spacing; saved scene prefab reference; "+vertices+" vertices.\n");
   Debug.Log("CG_UNITY_SYNC_VERIFIED "+picked+" contacts / "+vertices+" vertices");
  }
 }

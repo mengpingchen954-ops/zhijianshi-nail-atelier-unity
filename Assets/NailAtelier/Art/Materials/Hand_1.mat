@@ -34,7 +34,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fabric: 0
-    - _Glossiness: 0.63
+    - _Glossiness: 0.57
     - _Metallic: 0
     - _Skin: 1
     - _SkinTextures: 1
