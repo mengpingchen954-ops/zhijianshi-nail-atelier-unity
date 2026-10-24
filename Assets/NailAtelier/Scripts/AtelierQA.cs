@@ -13,10 +13,15 @@ public static class AtelierQA {
   app.Free();app.data.free=Rules.Copy(app.catalog.Find("trend-liquid").reference);app.Refresh();app.view.Focus("hand");yield return new WaitForSecondsRealtime(.5f);yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(dir,"00-soft3d-hand.png"));
   app.view.Focus("detail");yield return new WaitForSecondsRealtime(.5f);yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(dir,"00-soft3d-detail.png"));
   app.view.Focus("side");yield return new WaitForSecondsRealtime(.5f);yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(dir,"00-soft3d-side.png"));
+  foreach(var id in new[]{"trend-syrup","trend-chrome"}){
+   var customer=app.catalog.Find(id);if(customer==null)continue;app.data.free=Rules.Copy(customer.reference);app.Refresh();app.view.Focus("detail");yield return new WaitForSecondsRealtime(.4f);yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(dir,"gel-"+id+".png"));
+  }
+  var sample=app.data.free.nails[2];sample.@base="#659986";sample.finish="gloss";sample.pattern=null;sample.polish=new Polish{opacity=.35f,layers=2};sample.decorations.Clear();sample.decorations.Add(new Deco{type="droplet",u=.36f,v=.4f,scale=1.4f});sample.decorations.Add(new Deco{type="gem",u=.65f,v=.64f,scale=1.3f});sample.decorations.Add(new Deco{type="pearl",u=.4f,v=.8f});app.Refresh();app.view.Focus("detail");yield return new WaitForSecondsRealtime(.4f);yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(dir,"gel-droplet-crystal-pearl.png"));
   yield return new WaitForSecondsRealtime(.2f);Debug.Log("ATELIER_VISUAL_QA_FINISHED");Application.Quit();
  }
  public static IEnumerator Run(AtelierApp app){var checks=new List<string>();var errors=new List<string>();Application.logMessageReceived+=(message,trace,type)=>{if(type==LogType.Error||type==LogType.Exception)errors.Add(message);};string dir=Path.Combine(Application.dataPath,"..","QA");Directory.CreateDirectory(dir);yield return null;
   try{Require(app.sceneModels&&app.view.room==app.sceneModels,"runtime reuses editable scene models",checks);Require(UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().Count(r=>r.transform.Find("Hand_0"))==1,"one studio model instance during play",checks);foreach(var customer in app.catalog.customers)for(int i=0;i<10;i++){app.view.Apply(i,customer.reference.nails[i]);var mesh=app.view.nails[i].sharedMesh;var bounds=mesh.bounds;Require(!float.IsNaN(bounds.size.x)&&!float.IsInfinity(bounds.size.x)&&mesh.vertexCount>0,customer.id+" finger "+i+" finite editable mesh",checks);}app.Refresh();RaycastHit hit;Require(Physics.Raycast(new Ray(app.view.Center(2)+Vector3.up*2,Vector3.down),out hit,5)&&hit.collider.GetComponent<NailHit>()!=null,"Blender nail mesh responds to real physics picking",checks);Require(app.catalog.customers.Length==25,"25 authored appointments",checks);app.buttons["welcomeLearn"].onClick.Invoke();Require(app.currentModal=="lessons","native learning navigation",checks);Require(app.buttons["lesson-lesson-1"].interactable&&!app.buttons["lesson-lesson-2"].interactable,"sequential lesson gate",checks);}catch(Exception e){errors.Add(e.ToString());}
+  try{VerifyOptics(app,checks);}catch(Exception e){errors.Add(e.ToString());}app.Refresh();
   yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(dir,"01-lessons.png"));
   try{app.CloseModal();app.Accept("lesson-1");foreach(var t in new[]{"style","care","comfort","budget"})app.Answer(t);app.CloseModal();Require(app.data.session.plan.nails.All(n=>n.unpainted),"blank plan separate from reference",checks);app.buttons["color-#c997a4"].onClick.Invoke();app.buttons["copyColor"].onClick.Invoke();app.buttons["甲形-square"].onClick.Invoke();app.buttons["copyShape"].onClick.Invoke();Require(Rules.Checks(app.Who,app.Design).All(c=>c.ok),"native design controls satisfy lesson",checks);app.BeginService();Require(app.screen=="work","design to service transition",checks);app.Select(0);app.Hit(0,new Vector2(.5f,.5f),true);Require(app.data.session.work[0].done.Contains("inspect"),"inspection through shared hit path",checks);app.Assist();Require(app.data.session.work.Take(5).All(w=>w.done.Contains("inspect")),"same-hand assistance",checks);app.Select(5);app.Hit(5,new Vector2(.5f,.5f),true);app.Assist();app.NextStage();Require(app.Step=="file","stage advance",checks);app.Select(0);app.Hit(0,new Vector2(.3f,.85f),true);for(int k=0;k<15;k++)app.Hit(0,new Vector2(k%2==0?.7f:.3f,.85f),false);app.ReleaseContact();Require(app.data.session.work[0].done.Contains("file"),"moving file completes free edge",checks);}catch(Exception e){errors.Add(e.ToString());}
   yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(dir,"02-work.png"));
@@ -33,9 +38,41 @@ public static class AtelierQA {
   try{app.Free();app.Select(2);app.buttons["表面质感-catEye"].onClick.Invoke();app.buttons["material-moon-powder"].onClick.Invoke();Require(app.Design.nails[2].finish=="catEye","shop material usable in free creator",checks);app.buttons["操作工具-paint"].onClick.Invoke();app.Hit(2,new Vector2(.4f,.3f),true);app.Hit(2,new Vector2(.6f,.7f),false);app.ReleaseContact();Require(app.Design.nails[2].strokes.Count==1,"UV free drawing",checks);}catch(Exception e){errors.Add(e.ToString());}
   yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(dir,"04-free.png"));
   Screen.SetResolution(540,960,false);yield return new WaitForSecondsRealtime(.8f);yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(dir,"06-portrait.png"));Screen.SetResolution(1440,960,false);yield return new WaitForSecondsRealtime(.8f);
-  float start=Time.realtimeSinceStartup;int frames=0;while(Time.realtimeSinceStartup-start<3){frames++;yield return null;}float fps=frames/(Time.realtimeSinceStartup-start);checks.Add("measured render loop "+fps.ToString("0.0")+" fps (this machine / QA scene)");
+  yield return MeasureFrames("normal atelier",checks);
+  try{
+   app.Free();for(int i=0;i<10;i++){var n=app.Design.nails[i];n.decorations.Clear();for(int k=0;k<18;k++)n.decorations.Add(new Deco{type=k%3==0?"pearl":k%3==1?"gem":"droplet",u=.28f+(k%3)*.22f,v=.17f+(k/3)*.13f,scale=.6f});app.view.Apply(i,n);}app.view.Focus("hand");
+  }catch(Exception e){errors.Add(e.ToString());}
+  yield return new WaitForSecondsRealtime(.5f);yield return MeasureFrames("180 raised decorations",checks);
   File.WriteAllText(Path.Combine(dir,"report.txt"),"Unity native migration QA\n"+string.Join("\n",checks)+"\nERRORS "+errors.Count+"\n"+string.Join("\n",errors));Debug.Log("ATELIER_QA_FINISHED "+checks.Count+" checks, "+errors.Count+" errors");Application.Quit(errors.Count==0?0:1);
  }
+ static IEnumerator MeasureFrames(string label,List<string> checks){
+  var timings=new FrameTiming[1];float start=Time.realtimeSinceStartup;int frames=0,samples=0;double cpu=0,gpu=0,wait=0;
+  while(Time.realtimeSinceStartup-start<3){FrameTimingManager.CaptureFrameTimings();frames++;yield return null;if(FrameTimingManager.GetLatestTimings(1,timings)>0&&timings[0].gpuFrameTime>0){samples++;cpu+=timings[0].cpuMainThreadFrameTime;gpu+=timings[0].gpuFrameTime;wait+=timings[0].cpuMainThreadPresentWaitTime;}}
+  checks.Add(label+": "+(frames/(Time.realtimeSinceStartup-start)).ToString("0.0")+" fps (this machine)");
+  checks.Add(samples>0?label+": FrameTiming main thread "+(cpu/samples).ToString("0.00")+" ms, present wait "+(wait/samples).ToString("0.00")+" ms, GPU "+(gpu/samples).ToString("0.00")+" ms":label+": GPU frame timing unavailable on this graphics API");
+ }
+ static void VerifyOptics(AtelierApp app,List<string> checks){
+  var view=app.view;string mode=view.mode;int active=view.active;view.active=2;view.Focus("detail");
+  var nail=new Nail{@base="#548e78",polish=new Polish{opacity=.2f}};
+  try{
+   Require(view.materials[2].shader.isSupported&&Resources.Load<Shader>("NailAtelier/GelDecoration").isSupported,"gel and refraction shaders supported by player graphics API",checks);
+   view.Apply(2,nail);var sheer=RenderSample(view.cameraView);nail.polish.opacity=1;view.Apply(2,nail);Require(Difference(sheer,RenderSample(view.cameraView))>.00001f,"GPU optical coverage visibly changes gel absorption",checks);
+   var gloss=RenderSample(view.cameraView);nail.topcoat="matte";view.Apply(2,nail);Require(Difference(gloss,RenderSample(view.cameraView))>.00001f,"GPU matte removes sharp wet reflections",checks);
+   nail.topcoat="gloss";nail.finish="catEye";nail.magnet.u=.2f;view.Apply(2,nail);var cat=RenderSample(view.cameraView);nail.magnet.u=.8f;view.Apply(2,nail);Require(Difference(cat,RenderSample(view.cameraView))>.00001f,"GPU magnet moves magnetic light band",checks);
+   view.Apply(2,nail,0);var bare=RenderSample(view.cameraView);view.Mask(2,new Vector2(.5f,.5f),.4f);Require(Difference(bare,RenderSample(view.cameraView))>.00001f,"GPU service coverage reveals polish locally",checks);view.ResetMask(2);
+   nail.finish="gloss";view.Apply(2,nail);var plain=RenderSample(view.cameraView);nail.decorations.Add(new Deco{type="droplet",scale=1.4f});view.Apply(2,nail);Require(Difference(plain,RenderSample(view.cameraView))>.0000001f,"GPU transparent droplet is visible over nail artwork",checks);
+   nail.decorations[0].type="pearl";view.Apply(2,nail);Require(view.decoRoots[2].GetChild(0).GetComponent<Renderer>().sharedMaterial.shader.name=="Standard","pooled droplet can become opaque pearl",checks);
+   nail.decorations[0].type="gem";view.Apply(2,nail);Require(view.decoRoots[2].GetChild(0).GetComponent<Renderer>().sharedMaterial.shader.name=="NailAtelier/GelDecoration","pooled pearl can become refractive crystal",checks);
+   nail.decorations.Clear();nail.polish.opacity=.35f;nail.polish.layers=1;view.Apply(2,nail);float single=view.textures[2].GetPixel(128,256).a;nail.polish.layers=3;view.Apply(2,nail);Require(view.textures[2].GetPixel(128,256).a>single,"layering retains optical density in artwork alpha",checks);
+   float density=view.textures[2].GetPixel(128,256).a;nail.strokes.Add(new Stroke{points=new List<InkPoint>{new InkPoint(.5f,.5f)}});view.Apply(2,nail);Require(view.textures[2].GetPixel(128,256).a>.99f,"paint remains opaque above sheer gel",checks);nail.strokes.Add(new Stroke{kind="erase",points=new List<InkPoint>{new InkPoint(.5f,.5f)}});view.Apply(2,nail);Require(Mathf.Abs(view.textures[2].GetPixel(128,256).a-density)<.01f,"eraser restores underlying pattern and optical density",checks);
+  }finally{view.active=active;view.Focus(mode);}
+ }
+ static Color[] RenderSample(Camera camera){
+  var previous=RenderTexture.active;var target=camera.targetTexture;var rect=camera.rect;var rt=RenderTexture.GetTemporary(160,160,24,RenderTextureFormat.ARGB32);var image=new Texture2D(160,160,TextureFormat.RGB24,false);
+  try{camera.targetTexture=rt;camera.rect=new Rect(0,0,1,1);camera.Render();RenderTexture.active=rt;image.ReadPixels(new Rect(0,0,160,160),0,0);image.Apply();return image.GetPixels();}
+  finally{camera.targetTexture=target;camera.rect=rect;RenderTexture.active=previous;RenderTexture.ReleaseTemporary(rt);UnityEngine.Object.Destroy(image);}
+ }
+ static float Difference(Color[] a,Color[] b){float sum=0;for(int i=0;i<a.Length;i++){var d=a[i]-b[i];sum+=d.r*d.r+d.g*d.g+d.b*d.b;}return sum/a.Length;}
  static IEnumerator ExerciseService(AtelierApp app,List<string> checks,List<string> errors){
   for(int guard=0;guard<25&&app.Step!="finish";guard++){
    string step=app.Step;

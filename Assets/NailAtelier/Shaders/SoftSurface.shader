@@ -17,7 +17,7 @@ Shader "NailAtelier/SoftSurface" {
   if(_SkinTextures>.5)base=lerp(tex2D(_BackTex,i.uv_MainTex).rgb,tex2D(_MainTex,i.uv_MainTex).rgb,smoothstep(-.3,.3,i.worldNormal.y))*_Color.rgb;
   base*=lerp(1,lerp(.96,1.025,grain),_Wood);base*=lerp(1,weave,_Fabric);
   float ao=lerp(.6,1,saturate(i.color.r));o.Albedo=base*lerp(.87,1,ao);
-  o.Occlusion=ao;o.Metallic=_Metallic;o.Smoothness=_Glossiness;
+  o.Occlusion=ao;o.Metallic=_Metallic;o.Smoothness=lerp(_Glossiness,min(_Glossiness,.36),_Skin);
   // Small warm wrap and broad skin response, retains the sculpted joint shading.
   float rim=pow(1-saturate(dot(normalize(_WorldSpaceCameraPos-i.worldPos),normalize(i.worldNormal))),3);
   o.Emission=base*float3(.13,.065,.038)*_Skin*(.30+rim*.7)+_EmissionColor.rgb;
