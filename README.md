@@ -26,7 +26,7 @@
 
 ## Blender 源文件
 
-当前手部源文件为 [SourceArt/Exact-Reference-Hand/指间诗-原图轮廓重建.blend](SourceArt/Exact-Reference-Hand/指间诗-原图轮廓重建.blend)，本机另存于 `E:/Meijia/BlenderSource/Exact-Reference-Rebuild/`。此版直接测量用户实际上传的手背参考，重建窄掌细腕、五指轮廓及独立甲面，替换先前偏离参考的变形版本；附浅色褶皱袖口和原创椭圆链手饰。原图手背裁切保存在该源文件夹的 ModelData；同角度对照另存本机 `E:/Meijia/BlenderSource/Exact-Reference-Rebuild/原图与重建对照.png`。图中弯指侧面为另一姿势，当前模型为张手美甲姿势，未完成弯指绑定动画。运行时保留源甲床并用平滑插值细分近景甲面。
+当前手部源文件为 [SourceArt/Exact-Reference-Hand/指间诗-立体手部与甲床.blend](SourceArt/Exact-Reference-Hand/指间诗-立体手部与甲床.blend)。此版直接测量用户实际上传的手背参考，保留正面轮廓并重新分配掌背、掌心肉垫、指节和手腕的解剖深度；手部厚度由旧版约 0.35 提升到约 0.55，避免侧面近似薄片。附浅色褶皱袖口和原创椭圆链手饰。原图手背裁切保存在该源文件夹的 ModelData；新版侧面渲染和验证输出保存在本机 `E:/Meijia/BlenderSource/Hand-Volume-Refinement/`。图中弯指侧面为另一姿势，当前模型为张手美甲姿势，未完成弯指绑定动画。运行时保留源甲床并用平滑插值细分近景甲面。
 
 `SourceArt/指间诗工作室.blend` 包含手、十个独立 UV 甲面、工作台、照灯、瓶罐、托盘、展示框、花器和工具。`SourceArt/build_atelier.py` 可在 Blender 后台重建，输出 FBX 和精确网格 JSON。模型为可继续修改的风格化游戏模型。
 
@@ -76,6 +76,10 @@ Windows 原生版本通过完整纯色课与贴片服务的共享 UV 交互路�
 本轮 Windows 实机通过 **371 项检查、0 错误**，其中包括 25 套参考款的 250 个可编辑甲面。RTX 3060 验证场景约 59.6 FPS；手机性能未实测。图像、规则与几何报告见 `Verification/`。另在浏览器实际验证 WebGL 加载、改色、杏仁甲形和三维甲面选取。
 
 `-atelierVisualQa` 使用隔离临时存档，导出整桌、单手、甲面近景和侧面截图；`-atelierQa` 运行完整交互回归。两者均不写入玩家存档。
+
+## v1.2 · 手部侧面体积修正
+
+保留原有正面轮廓，重新塑造掌背、掌心肉垫、鱼际/小鱼际、腕部和近端指节的深度，生成 `指间诗-立体手部与甲床.blend` 并同步 Unity 网格。新版 Blender 侧剖面检查为掌部 0.511、鱼际 0.488、腕部 0.459、近端中指 0.268（项目单位）；Windows 导入/构建通过，完整回归 **387 项检查、0 错误**。
 
 ## 纤长 CG 手 · 间距修正版同步
 

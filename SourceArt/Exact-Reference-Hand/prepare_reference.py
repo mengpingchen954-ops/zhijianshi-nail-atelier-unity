@@ -10,7 +10,7 @@ from skimage import measure
 
 ROOT=Path(__file__).resolve().parent
 DATA=ROOT/'ModelData';DATA.mkdir(exist_ok=True)
-PREVIEW=Path('E:/Meijia/BlenderSource/Exact-Reference-Rebuild');PREVIEW.mkdir(exist_ok=True)
+PREVIEW=Path('E:/Meijia/BlenderSource/Hand-Volume-Refinement');PREVIEW.mkdir(exist_ok=True)
 REF=Path('C:/Users/CHENME~1/AppData/Local/Temp/codex-clipboard-3da19897-8eba-417b-93f7-61a4b9a34e8c.png')
 if REF.exists():im=Image.open(REF).convert('RGB').resize((2048,1144))
 else:
@@ -54,9 +54,9 @@ sdf=ndi.gaussian_filter(inside-ndi.distance_transform_edt(~mask)*step,.85)
 
 def g(x,c,r):return np.exp(-((x-c)/r)**2)
 radius=.55+.08*g(Y,-.45,.6)
-top_amp=.125+.032*g(Y,-.3,.6)
-bottom_amp=.137+.035*g(Y,-.4,.65)
-center=np.full(X.shape,.008)
+top_amp=.210+.060*g(Y,-.3,.6)
+bottom_amp=.190+.040*g(Y,-.4,.65)
+center=.055+.035*g(Y,-.35,.65)
 folds=np.zeros(X.shape)
 for name,f in landmarks.items():
     points=np.array(f['axis'],float);best=np.full(X.shape,1e6);width=np.zeros(X.shape);fraction=np.zeros(X.shape)
@@ -68,10 +68,10 @@ for name,f in landmarks.items():
         fraction=np.where(closer,(j+t)/3,fraction);best=np.minimum(best,dist)
     w=np.exp(-(best/np.maximum(width/SCALE*1.15,1))**4)*np.clip(fraction/.20,0,1)
     radius=radius*(1-w)+width*w
-    top_amp=top_amp*(1-w)+width*.82*w
-    bottom_amp=bottom_amp*(1-w)+width*.94*w
-    # Metacarpals are relaxed; the back view remains the reference's open-hand pose.
-    center+=(.010*np.sin(fraction*np.pi)+(.012 if name=='thumb' else 0))*w
+    top_amp=top_amp*(1-w)+width*1.02*w
+    bottom_amp=bottom_amp*(1-w)+width*1.08*w
+    # Relaxed fingers have a lifted knuckle and a soft distal drop, rather than one shared height plane.
+    center=center*(1-w)+(.095-.035*fraction+.040*np.sin(fraction*np.pi)+(.035 if name=='thumb' else 0))*w
     for j in (1,2):
         q=points[j];axis=points[j+1]-points[j-1];axis/=np.linalg.norm(axis)
         along=((PX-q[0])*axis[0]+(PY-q[1])*axis[1])*SCALE
@@ -86,14 +86,15 @@ for start,end in [((1459,439),(1575,760)),((1527,414),(1590,755)),((1595,441),(1
     folds+=.007*g(distance,0,17)*np.sin(np.pi*t)**.7
 top=center+(top_amp+folds)*cross
 bottom=center-bottom_amp*cross
-bottom-=.030*g(X,-.52,.25)*g(Y,-.45,.51)*cross
-bottom-=.012*g(X,.13,.23)*g(Y,-.55,.50)*cross
+bottom-=.075*g(X,-.52,.28)*g(Y,-.45,.51)*cross
+bottom-=.040*g(X,.13,.25)*g(Y,-.55,.50)*cross
+bottom+=.026*g(X,-.15,.22)*g(Y,-.38,.32)*cross
 # Give the wrist a circular, continuous forearm section instead of a thin slab.
 w=np.clip((-Y-1.00)/.60,0,1);w=w*w*(3-2*w)
-wrist_z=.146*np.sqrt(np.clip(1-((PX-cx)/half)**2,0,1))
-top=top*(1-w)+(wrist_z+.008)*w
-bottom=bottom*(1-w)+(-wrist_z+.008)*w
-z=np.arange(-.29,.30,step,dtype=np.float32)
+wrist_z=.230*np.sqrt(np.clip(1-((PX-cx)/half)**2,0,1))
+top=top*(1-w)+(wrist_z+.065)*w
+bottom=bottom*(1-w)+(-wrist_z+.065)*w
+z=np.arange(-.38,.50,step,dtype=np.float32)
 volume=np.minimum(sdf[...,None],np.minimum(top[...,None]-z,z-bottom[...,None])).astype(np.float32)
 volume[[0,-1],:,:]=-step;volume[:,[0,-1],:]=-step
 v,f,_,_=measure.marching_cubes(volume,0,spacing=(step,step,step),allow_degenerate=False)

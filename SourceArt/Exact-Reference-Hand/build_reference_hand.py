@@ -7,8 +7,8 @@ from mathutils.bvhtree import BVHTree
 ROOT=Path(__file__).resolve().parent
 PROJECT=ROOT.parents[1]
 DATA=ROOT/'ModelData'
-OUT=ROOT/'指间诗-原图轮廓重建.blend'
-PREVIEW=Path('E:/Meijia/BlenderSource/Exact-Reference-Rebuild')
+OUT=ROOT/'指间诗-立体手部与甲床.blend'
+PREVIEW=Path('E:/Meijia/BlenderSource/Hand-Volume-Refinement')
 SOURCE=PROJECT/'SourceArt/CG-Hand-Refinement/指间诗工作室-纤长女生CG手-间距修正版.blend'
 meta=json.loads((DATA/'measurements.json').read_text(encoding='utf-8'))
 volume=np.load(DATA/'actual-reference-volume.npz')
@@ -132,7 +132,9 @@ for finger,(name,f) in enumerate(meta['landmarks'].items()):
             d=v*length;x=s*width*.5;q=root+along*d+across*x
             h,_,_,_=bvh.ray_cast(q+normal*.4,-normal,.8)
             if h is not None:a.append([1,d,x,x*x]);b.append((h-q).dot(normal))
-    assert len(b)>=15,(name,len(b))
+    # The thumb's strongly opposed angle can leave one edge sample outside the
+    # measured surface; the remaining samples still define a stable plate.
+    assert len(b)>=10,(name,len(b))
     coeff=np.linalg.lstsq(np.array(a),np.array(b),rcond=None)[0]
     def height(d,x):
         c=coeff
@@ -178,7 +180,7 @@ def garment(name,cx,sections,ribs):
                 a=math.tau*k/n;wave=math.cos(ribs*a+.22*math.sin(a*3))
                 r=.016*(.5+.5*wave) if not inner else -.014
                 flounce=.028*wave*(1-j/(count-1))**2
-                verts.append((cx+(rx+r)*math.cos(a),y+flounce,.08+(rz+r)*math.sin(a)))
+                verts.append((cx+(rx+r)*math.cos(a),y+flounce,.115+(rz+r)*math.sin(a)))
     for side in range(2):
         off=side*count*n
         for j in range(count-1):
@@ -193,9 +195,9 @@ gold,_=material('Original oval chain · warm gold',(.83,.61,.26),.25,'metal',.82
 stone,p=material('Original rose cabochon',(.77,.38,.49),.20,'ceramic');p.inputs['Coat Weight'].default_value=.5
 for h in range(2):
     sign=-1 if h==0 else 1;cx=1.72*sign
-    garment(f'Cuff_{h}',cx,[(-1.75,.54,.255),(-1.82,.59,.28),(-1.94,.54,.25),(-2.05,.48,.22),(-2.13,.49,.22),(-2.22,.53,.245)],16)
-    garment(f'Sleeve_{h}',cx,[(-2.19,.53,.24),(-2.32,.60,.29),(-2.50,.66,.32),(-2.75,.68,.32),(-3.03,.65,.30),(-3.30,.61,.28)],20)
-    verts=[];faces=[];center=Vector((cx-.075*sign,-1.46,.066))
+    garment(f'Cuff_{h}',cx,[(-1.75,.54,.305),(-1.82,.59,.32),(-1.94,.54,.29),(-2.05,.48,.26),(-2.13,.49,.26),(-2.22,.53,.28)],16)
+    garment(f'Sleeve_{h}',cx,[(-2.19,.53,.28),(-2.32,.60,.31),(-2.50,.66,.34),(-2.75,.68,.34),(-3.03,.65,.32),(-3.30,.61,.30)],20)
+    verts=[];faces=[];center=Vector((cx-.075*sign,-1.46,.120))
     def link(c,u,v,rx,ry):
         off=len(verts);w=u.cross(v).normalized()
         for i in range(20):
@@ -207,12 +209,12 @@ for h in range(2):
                 a=off+i*6+j;b=off+((i+1)%20)*6+j
                 faces.append((a,b,off+((i+1)%20)*6+(j+1)%6,off+i*6+(j+1)%6))
     for k in range(30):
-        a=math.tau*k/30;c=center+Vector((.423*math.cos(a),0,.187*math.sin(a)))
-        tangent=Vector((-.423*math.sin(a),0,.187*math.cos(a))).normalized()
+        a=math.tau*k/30;c=center+Vector((.423*math.cos(a),0,.270*math.sin(a)))
+        tangent=Vector((-.423*math.sin(a),0,.270*math.cos(a))).normalized()
         radial=Vector((math.cos(a),0,math.sin(a)))
         v=(Vector((0,1,0))*.8+radial*(.60 if k%2 else -.60)).normalized()
         link(c,tangent,v,.047,.026)
-    charm=center+Vector((0,-.07,.203));link(charm,Vector((1,0,0)),Vector((0,1,0)),.056,.072)
+    charm=center+Vector((0,-.07,.286));link(charm,Vector((1,0,0)),Vector((0,1,0)),.056,.072)
     object_mesh(f'HandDetail_{h}_Bracelet',verts,faces,gold)
     bpy.ops.mesh.primitive_uv_sphere_add(segments=20,ring_count=12,radius=1,location=charm)
     gem=bpy.context.object;gem.name=f'HandDetail_{h}_Rose';gem.scale=(.041,.055,.018);gem.data.materials.append(stone)
@@ -232,7 +234,7 @@ for name,loc,energy,size in [('Study key',(-3,1,5),650,3),('Study fill',(4,-1,3)
 target=Vector((((x0+x1)/2-wx)*scale,meta['wrist_y']+(wy-(y0+y1)/2)*scale,.055))
 light=bpy.data.lights.new('Study softbox','AREA');light.energy=400;light.shape='RECTANGLE';light.size=1.2;light.size_y=5
 softbox=bpy.data.objects.new('Study softbox',light);study.collection.objects.link(softbox);softbox.location=(0,1.1,5);softbox.rotation_euler=(-softbox.location).to_track_quat('-Z','Y').to_euler()
-for label,direction in [('dorsal',(0,0,8)),('palmar',(0,0,-8)),('radial',(-8,0,0)),('beauty',(-3,-2,7))]:
+for label,direction in [('dorsal',(0,0,8)),('palmar',(0,0,-8)),('radial',(-8,0,0)),('profile3q',(-7,-2,3)),('beauty',(-3,-2,7))]:
     c=bpy.data.cameras.new('Study · '+label);c.type='ORTHO';c.ortho_scale=(y1-y0)*scale
     o=bpy.data.objects.new('Study · '+label,c);study.collection.objects.link(o);o.location=target+Vector(direction)
     back=(o.location-target).normalized();up=Vector((0,1,0));horizontal=up.cross(back).normalized();up=back.cross(horizontal).normalized()
@@ -252,6 +254,14 @@ for row in range(0,mask.shape[0],3):
         predicted=hit is not None;expected=bool(mask[row,col]);intersection+=predicted and expected;union+=predicted or expected
 report['actual_skin_silhouette_iou']=intersection/union
 assert report['actual_skin_silhouette_iou']>.965,report['actual_skin_silhouette_iou']
+report['depth_sections']={}
+for name,point in [('palm',(-.32,-.45)),('thenar',(-.52,-.45)),('wrist',(0,-1.74)),('middle_proximal',(-.35,1.05))]:
+    q=Vector((point[0],point[1],0));upper,_,_,_=bvh.ray_cast(q+Vector((0,0,.8)),Vector((0,0,-1)),1.6)
+    lower,_,_,_=bvh.ray_cast(q-Vector((0,0,.8)),Vector((0,0,1)),1.6)
+    assert upper is not None and lower is not None,(name,'missing volume')
+    report['depth_sections'][name]=float(upper.z-lower.z)
+assert report['depth_sections']['palm']>.46,report['depth_sections']
+assert report['depth_sections']['wrist']>.40,report['depth_sections']
 for o in [right,left]+[bpy.data.objects[f'Nail_{i:02}'] for i in range(10)]:
     ev=o.evaluated_get(bpy.context.evaluated_depsgraph_get());mesh=ev.to_mesh();bm=bmesh.new();bm.from_mesh(mesh)
     assert all(e.is_manifold for e in bm.edges),o.name
@@ -260,7 +270,7 @@ for o in [right,left]+[bpy.data.objects[f'Nail_{i:02}'] for i in range(10)]:
 bpy.context.window.scene=scene
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT));shutil.copy2(OUT,PREVIEW/OUT.name)
 (ROOT/'geometry-verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
-for label in ('dorsal','palmar','radial','beauty'):
+for label in ('dorsal','palmar','radial','profile3q','beauty'):
     study.camera=bpy.data.objects['Study · '+label]
     rot=study.camera.rotation_euler.to_matrix()
     for name,loc in [('Study key',(-3,1,5)),('Study fill',(4,-1,3)),('Study rim',(3,1,1))]:

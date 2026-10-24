@@ -9,7 +9,7 @@ from mathutils.bvhtree import BVHTree
 
 ROOT = Path(__file__).resolve().parent
 PROJECT = ROOT.parents[1]
-SOURCE = PROJECT / 'SourceArt/Exact-Reference-Hand/指间诗-原图轮廓重建.blend'
+SOURCE = PROJECT / 'SourceArt/Exact-Reference-Hand/指间诗-立体手部与甲床.blend'
 ART = PROJECT / 'Assets/NailAtelier/Art'
 bpy.ops.wm.open_mainfile(filepath=str(SOURCE))
 source_hash = hashlib.sha256(SOURCE.read_bytes()).hexdigest()

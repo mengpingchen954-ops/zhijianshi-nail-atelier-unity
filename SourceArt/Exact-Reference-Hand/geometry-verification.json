@@ -1,7 +1,7 @@
 {
   "reference": "Actual user attachment, 2048x1144; dorsal silhouette and nail landmarks measured directly",
   "limit": "Palm and side show different poses; depth is sculpted anatomical interpretation, not an exact multiview scan.",
-  "source": "E:\\Meijia\\meijia\\SourceArt\\Exact-Reference-Hand\\指间诗-原图轮廓重建.blend",
+  "source": "E:\\Meijia\\meijia\\SourceArt\\Exact-Reference-Hand\\指间诗-立体手部与甲床.blend",
   "nails": [
     {
       "finger": "thumb",
@@ -10,25 +10,31 @@
     },
     {
       "finger": "index",
-      "width": 0.13852918750392032,
-      "length": 0.27890841826222273
+      "width": 0.1385576973816949,
+      "length": 0.2789199785475016
     },
     {
       "finger": "middle",
-      "width": 0.16161455543001024,
-      "length": 0.28628462807823396
+      "width": 0.16161196396704,
+      "length": 0.28630768230796894
     },
     {
       "finger": "ring",
-      "width": 0.14313916093721926,
-      "length": 0.29840541205303844
+      "width": 0.14313947104577787,
+      "length": 0.29841900322230364
     },
     {
       "finger": "little",
-      "width": 0.12466383248422205,
-      "length": 0.2892310993497675
+      "width": 0.124663562030239,
+      "length": 0.28925549211879686
     }
   ],
   "runtime_mesh_count": 141,
-  "actual_skin_silhouette_iou": 0.9836129535700351
+  "actual_skin_silhouette_iou": 0.985179407176287,
+  "depth_sections": {
+    "palm": 0.5113852620124817,
+    "thenar": 0.48792389035224915,
+    "wrist": 0.45940321683883667,
+    "middle_proximal": 0.2679244875907898
+  }
 }
