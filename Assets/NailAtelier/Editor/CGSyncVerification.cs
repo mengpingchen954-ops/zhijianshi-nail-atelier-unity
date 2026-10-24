@@ -20,6 +20,10 @@ public static class CGSyncVerification {
    var mesh=room.transform.Find("Nail_"+i.ToString("00")).GetComponent<MeshFilter>().sharedMesh;
    if(mesh.vertexCount!=1025)throw new Exception("Fitted nail grid was not imported: "+i);
    var surface=new FittedNailSurface(mesh,anchors[i]);
+   foreach(string shape in new[]{"round","square","almond","oval","coffin"})for(int col=0;col<=4;col++){
+    var uv=new Vector2(col/4f,.10f);
+    if(Vector3.Distance(surface.Point(new Nail(),uv),surface.Point(new Nail{shape=shape},uv))>.00001f)throw new Exception("Shape changes fitted cuticle: "+i+" "+shape);
+   }
    var hand=room.transform.Find("Hand_"+(i/5));
    var material=hand.GetComponent<Renderer>().sharedMaterial;
    if(!material.mainTexture||!material.GetTexture("_BackTex")||material.GetFloat("_SkinTextures")<.5f)throw new Exception("Missing CG skin textures");

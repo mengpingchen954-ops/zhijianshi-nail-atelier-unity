@@ -9,7 +9,7 @@ from mathutils.bvhtree import BVHTree
 
 ROOT = Path(__file__).resolve().parent
 PROJECT = ROOT.parents[1]
-SOURCE = ROOT / '指间诗工作室-纤长女生CG手-间距修正版.blend'
+SOURCE = PROJECT / 'SourceArt/Reference-Hand-2026/指间诗-参考图手型与甲床优化.blend'
 ART = PROJECT / 'Assets/NailAtelier/Art'
 bpy.ops.wm.open_mainfile(filepath=str(SOURCE))
 source_hash = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
@@ -131,6 +131,6 @@ for obj in scene.objects:
     obj.select_set(obj.type == 'MESH')
 bpy.ops.export_scene.fbx(filepath=str(ART / 'Atelier.fbx'), use_selection=True, object_types={'MESH'}, axis_forward='-Z', axis_up='Y', add_leaf_bones=False, bake_anim=False)
 report = {'source': str(SOURCE), 'source_sha256': source_hash, 'objects': len(objects), 'vertices': sum(len(o['vertices']) // 3 for o in objects), 'triangles': sum(len(o['triangles']) // 3 for o in objects), 'anchors': len(anchors), 'nail_contract': 'Fitted 24x40 UV surface; runtime edits sample the reference grid; oriented thumb axes.'}
-(ROOT / 'unity-export-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+(SOURCE.parent / 'unity-export-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
 assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == source_hash
 print('CG_UNITY_EXPORT_COMPLETE', json.dumps(report, ensure_ascii=False), flush=True)

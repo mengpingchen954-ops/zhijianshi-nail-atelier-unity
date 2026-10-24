@@ -1,0 +1,62 @@
+{
+  "Hand_0": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 1.836014883510485
+  },
+  "Hand_1": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 1.836014882925302
+  },
+  "Nail_00": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.00017317649718330463
+  },
+  "Nail_01": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.00022004253952295538
+  },
+  "Nail_02": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.00026990623817715366
+  },
+  "Nail_03": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.0002519288900293819
+  },
+  "Nail_04": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.00018958827665226306
+  },
+  "Nail_05": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.00017318053351979789
+  },
+  "Nail_06": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.0002200428135017049
+  },
+  "Nail_07": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.00026990585459157456
+  },
+  "Nail_08": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.00025192770400121056
+  },
+  "Nail_09": {
+    "closed_manifold": true,
+    "zero_area_faces": 0,
+    "volume": 0.00018958754503322793
+  }
+}

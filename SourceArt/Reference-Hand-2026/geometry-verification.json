@@ -1,0 +1,50 @@
+{
+  "source_sha256": "2ad4dcf0d4bf8b8a6d7a06ba2af7477e92aad05a26c16793207af17d52fd3bab",
+  "unchanged_props": 125,
+  "hands": {
+    "Hand_1": {
+      "vertices": 60042,
+      "nonmanifold": 0,
+      "zero_area": 0,
+      "volume": 1.836014882925302
+    },
+    "Hand_0": {
+      "vertices": 60042,
+      "nonmanifold": 0,
+      "zero_area": 0,
+      "volume": 1.836014883510485
+    }
+  },
+  "nails": [
+    {
+      "finger": 0,
+      "width": 0.18812906310302327,
+      "length": 0.35626780955329457,
+      "supported_clearance_min": 0.005499975599377649
+    },
+    {
+      "finger": 1,
+      "width": 0.19480400493298508,
+      "length": 0.4192724462740547,
+      "supported_clearance_min": 0.005499995018865889
+    },
+    {
+      "finger": 2,
+      "width": 0.2172541983778139,
+      "length": 0.44482588883300156,
+      "supported_clearance_min": 0.00549999123654743
+    },
+    {
+      "finger": 3,
+      "width": 0.205917871682725,
+      "length": 0.43971188649373877,
+      "supported_clearance_min": 0.005500001729323856
+    },
+    {
+      "finger": 4,
+      "width": 0.16142997706830714,
+      "length": 0.4280420529531454,
+      "supported_clearance_min": 0.005499997273147983
+    }
+  ]
+}

@@ -26,6 +26,8 @@
 
 ## Blender 源文件
 
+当前手部与甲床源文件为 [SourceArt/Reference-Hand-2026/指间诗-参考图手型与甲床优化.blend](SourceArt/Reference-Hand-2026/指间诗-参考图手型与甲床优化.blend)，本机另存于 `E:/Meijia/BlenderSource/Reference-Hand-2026/`。本轮依据用户手部参考图调整四指展开、远端收细、掌部体积，以及加长的贴合椭圆甲床；保留袖口、道具、皮肤 UV 和美甲材质。重现步骤见该文件夹 README。运行时甲型按导入甲面的真实宽度重塑自由缘，保持甲根贴合。
+
 `SourceArt/指间诗工作室.blend` 包含手、十个独立 UV 甲面、工作台、照灯、瓶罐、托盘、展示框、花器和工具。`SourceArt/build_atelier.py` 可在 Blender 后台重建，输出 FBX 和精确网格 JSON。模型为可继续修改的风格化游戏模型。
 
 ```powershell
