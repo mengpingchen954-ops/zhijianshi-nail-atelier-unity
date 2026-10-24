@@ -8,6 +8,7 @@
 - prepare_reference.py：测量轮廓和甲床标志点，生成解剖深度场及原始网格；依赖建模工具 numpy、scipy、scikit-image、Pillow。
 - build_reference_hand.py：在 Blender 中体素清理、四边形重拓扑，拟合平滑甲面并制作袖口与原创椭圆链手饰。
 - unity-export-report.json / geometry-verification.json：导出来源、网格和几何自检。
+- `E:/Meijia/手.fbx`：用户提供的高密度解剖参考；只用于校准掌弓、腕部和指节，不直接替换可编辑甲床。
 
 ## 重现
 1. 使用带上述建模库的 Python 运行 prepare_reference.py。临时原图缺失时可使用随附手背裁切图。

@@ -68,8 +68,11 @@ for name,f in landmarks.items():
         fraction=np.where(closer,(j+t)/3,fraction);best=np.minimum(best,dist)
     w=np.exp(-(best/np.maximum(width/SCALE*1.15,1))**4)*np.clip(fraction/.20,0,1)
     radius=radius*(1-w)+width*w
-    top_amp=top_amp*(1-w)+width*1.02*w
-    bottom_amp=bottom_amp*(1-w)+width*1.08*w
+    # Match the supplied high-density hand: each phalanx has a softly fuller
+    # joint section instead of a single constant-radius tube.
+    joint_bulge=1+.075*(g(fraction,.28,.095)+.060*g(fraction,.56,.085)+.045*g(fraction,.78,.065))
+    top_amp=top_amp*(1-w)+(width*1.02*joint_bulge)*w
+    bottom_amp=bottom_amp*(1-w)+(width*1.08*joint_bulge)*w
     # Relaxed fingers have a lifted knuckle and a soft distal drop, rather than one shared height plane.
     center=center*(1-w)+(.095-.035*fraction+.040*np.sin(fraction*np.pi)+(.035 if name=='thumb' else 0))*w
     for j in (1,2):

@@ -1,9 +1,9 @@
 {
   "source": "E:\\Meijia\\meijia\\SourceArt\\Exact-Reference-Hand\\指间诗-立体手部与甲床.blend",
-  "source_sha256": "cae06e7227f1a04c3c0841d3f68ec413057771a0dfa8fad0beb4cc0df4717de2",
+  "source_sha256": "e7b1b4989fc9eedab387704d67c7f4fab6e718b51e7cb96925e2537b6f8f18cc",
   "objects": 141,
-  "vertices": 118767,
-  "triangles": 223084,
+  "vertices": 124586,
+  "triangles": 234876,
   "anchors": 10,
   "nail_contract": "Fitted 24x40 UV surface; runtime edits sample the reference grid; oriented thumb axes."
 }
