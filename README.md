@@ -26,7 +26,7 @@
 
 ## Blender 源文件
 
-当前手部源文件为 [SourceArt/Exact-Reference-Hand/指间诗-原图轮廓重建.blend](SourceArt/Exact-Reference-Hand/指间诗-原图轮廓重建.blend)，本机另存于 `E:/Meijia/BlenderSource/Exact-Reference-Rebuild/`。此版直接测量用户实际上传的手背参考，重建窄掌细腕、五指轮廓及独立甲面，替换先前偏离参考的变形版本；附浅色褶皱袖口和原创椭圆链手饰。同角度对照见 `Verification/actual-reference-comparison.png`。图中弯指侧面为另一姿势，当前模型为张手美甲姿势，未完成弯指绑定动画。运行时保留源甲床并用平滑插值细分近景甲面。
+当前手部源文件为 [SourceArt/Exact-Reference-Hand/指间诗-原图轮廓重建.blend](SourceArt/Exact-Reference-Hand/指间诗-原图轮廓重建.blend)，本机另存于 `E:/Meijia/BlenderSource/Exact-Reference-Rebuild/`。此版直接测量用户实际上传的手背参考，重建窄掌细腕、五指轮廓及独立甲面，替换先前偏离参考的变形版本；附浅色褶皱袖口和原创椭圆链手饰。原图手背裁切保存在该源文件夹的 ModelData；同角度对照另存本机 `E:/Meijia/BlenderSource/Exact-Reference-Rebuild/原图与重建对照.png`。图中弯指侧面为另一姿势，当前模型为张手美甲姿势，未完成弯指绑定动画。运行时保留源甲床并用平滑插值细分近景甲面。
 
 `SourceArt/指间诗工作室.blend` 包含手、十个独立 UV 甲面、工作台、照灯、瓶罐、托盘、展示框、花器和工具。`SourceArt/build_atelier.py` 可在 Blender 后台重建，输出 FBX 和精确网格 JSON。模型为可继续修改的风格化游戏模型。
 
